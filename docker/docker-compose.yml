@@ -1,0 +1,32 @@
+version: '3'
+
+services: 
+  laravel-webserver:
+    build:
+      context: ../.
+      dockerfile: ./docker/Dockerfile
+    expose:
+      - 80
+    ports:
+      - 80:80
+    networks:
+      - ega-network
+    container_name: laravelhost
+
+  mysql-db:
+    image: mysql:8
+    networks:
+      - ega-network
+    expose: 
+      - 3306
+    ports: 
+      - 3306:3306
+    environment: 
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=laravel-db
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+    container_name: mysqlhost
+
+networks:
+  ega-network:
+    driver: bridge
