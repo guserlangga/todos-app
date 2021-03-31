@@ -14,6 +14,7 @@
                             <li class="list-group-item">
                                 {{ $todo->name }}
                                 <a href="/todos/{{ $todo->id }}" class="btn btn-primary btn-sm float-end">View</a>
+                                <a href="{{ route('destroy.todo', $todo->id) }}" class="btn btn-danger btn-sm float-end">Delete</a>
                             </li>
                         @endforeach
                     </ul>
